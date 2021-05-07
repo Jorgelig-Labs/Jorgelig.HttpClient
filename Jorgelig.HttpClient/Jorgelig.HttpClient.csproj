@@ -1,7 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+	  <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+	  <LangVersion>9.0</LangVersion>
+	  <Nullable>enable</Nullable>
+	  <Description>Biblioteca para cliente rest.</Description>
+	  <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+	  <ApplicationIcon />
+	  <OutputType>Library</OutputType>
+
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
 
 </Project>
