@@ -1,8 +1,15 @@
-# Jorgelig.HttpClient
-Biblioteca para cliente rest
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Jorgelig.HttpClient.ClientHttp;
+using Xunit;
 
-### Ejemplos de uso
-```csharp
+namespace Jorgelig.HttpClient.Test
+{
+    public class RestClientTest
+    {
+        private static string BaseUrl => "https://jsonplaceholder.typicode.com/"; 
+        private static RestClient _client;
         public RestClientTest()
         {
             _client = new RestClient(new System.Net.Http.HttpClient(), BaseUrl);
@@ -40,4 +47,14 @@ Biblioteca para cliente rest
             var result = await _client.ExecuteApi<TodoDto>(HttpMethod.Put, "/posts/1",data: dto);
             Assert.Equal(result?.Title, newTitle);
         }
-```            
+    }
+
+
+    public class TodoDto
+    {
+        public int? UserId { get; set; }
+        public int? Id { get; set; }
+        public string? Title { get; set; }
+        public bool? Completed { get; set; }
+    }
+}

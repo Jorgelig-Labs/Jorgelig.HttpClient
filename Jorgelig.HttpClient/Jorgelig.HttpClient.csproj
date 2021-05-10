@@ -6,16 +6,25 @@
 	  <Nullable>enable</Nullable>
 	  <Description>Biblioteca para cliente rest.</Description>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	  <Authors>Jorgelig</Authors>
 	  <Company>Jorgelig Labs</Company>
-	  <Copyright />
+	  <Copyright>JorgeligLabs 2021</Copyright>
 	  <RepositoryUrl>https://github.com/Jorgelig-Labs/Jorgelig.HttpClient</RepositoryUrl>
+	  <Version>1.0.0.1</Version>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
 
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
