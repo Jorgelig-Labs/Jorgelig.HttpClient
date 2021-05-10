@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Jorgelig.HttpClient.Utils;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace Jorgelig.HttpClient.ClientHttp
 {
@@ -16,15 +17,16 @@ namespace Jorgelig.HttpClient.ClientHttp
         //private static ILogger _logger => Log.ForContext(typeof(RestClient));
 
 
-        public RestClient(string? apiBaseUrl)
+        public RestClient(System.Net.Http.HttpClient client, string? apiBaseUrl)
         {
             if (string.IsNullOrWhiteSpace(apiBaseUrl))
                 throw new ArgumentNullException($"{nameof(apiBaseUrl)} is required");
 
             ApiBaseUrl = apiBaseUrl;
+            _client = client;
         }
 
-        private async Task<TResult?> ExecuteApi<TResult>(HttpMethod method, string resourcePath,
+        public async Task<TResult?> ExecuteApi<TResult>(HttpMethod method, string resourcePath,
             AuthenticationHeaderValue? authenticationHeader = null,
             object? data = null) where TResult : class
         {
@@ -82,7 +84,7 @@ namespace Jorgelig.HttpClient.ClientHttp
             if (string.IsNullOrWhiteSpace(resourcePath))
                 throw new ArgumentNullException(nameof(resourcePath));
 
-            var baseUrl = ApiBaseUrl.EndsWith("/") ? ApiBaseUrl : $"{ApiBaseUrl}";
+            var baseUrl = ApiBaseUrl.EndsWith("/") ? ApiBaseUrl.TrimEnd(ApiBaseUrl[ApiBaseUrl.Length - 1]) : $"{ApiBaseUrl}";
             var path = resourcePath.StartsWith("/") ? resourcePath : $"/{resourcePath}";
             var url = $"{baseUrl}{path}";
 
