@@ -19,6 +19,8 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
     - name: Build
       run: dotnet build --no-restore
     - name: Test
